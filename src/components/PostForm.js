@@ -13,14 +13,26 @@ const PostForm = () => {
     }
 
     const savePost = () => {
-        dispatch(savePostForm());
+        if (oPostForm.post_text !== '') {
+            dispatch(savePostForm());
+        }
         dispatch(handlePostFormChange({ value: '', name: 'post_text'}));
     }
 
     return (
         <div>
-            <textarea name="post_text" value={oPostForm.post_text} onChange={handleFormChange}></textarea>
-            <button onClick={savePost}>Post</button>
+            <section>
+                <div className='wrapper'>
+                    <div className='input-box'>
+                        <div className='post-form'>
+                            <textarea name="post_text" placeholder='Share what you think!' value={oPostForm.post_text} onChange={handleFormChange}></textarea>
+                        </div>
+                    </div>
+                    <div className="post-actions">
+                        <button className='save-post' onClick={savePost}>Post</button>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }

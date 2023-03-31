@@ -4,10 +4,10 @@ import PostList from './PostList';
 
 const NewsFeed= () => {
     return (
-        <div>
-            {/*<Header />*/}
-            <h1>News Feed</h1>
-            <h1>Share what you think!</h1>
+        <div className='feed-line'>
+            <section>
+                <b className='feed-header'>News Feed</b>
+            </section>
             <PostForm/>
             <PostList/>
         </div>

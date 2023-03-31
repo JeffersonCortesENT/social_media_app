@@ -21,24 +21,26 @@ const PostList= () => {
 
     return (
         <div>
-            {
-                aPosts.length > 0 ? 
-                (
-                    aPosts.map((aData, iKey) => (
-                        <div key={iKey}>
-                            <p>{ aData.post_text }</p><br/>
-                            <button onClick={ () => { editPost(iKey, aData.post_text) } }>Edit</button>
-                            <button value={iKey} onClick={deletePost}>Delete</button>
+            <section>
+                {
+                    aPosts.length > 0 ? 
+                    (
+                        aPosts.map((aData, iKey) => (
+                            <div className='post-content' key={iKey}>
+                                <p>{ aData.post_text }</p><br/>
+                                <button onClick={ () => { editPost(iKey, aData.post_text) } }>Edit</button>
+                                <button value={iKey} onClick={deletePost}>Delete</button>
+                            </div>
+                        ))
+                    ) 
+                    : 
+                    (
+                        <div className='empty-list'>
+                            <h2>No Posts Available</h2>
                         </div>
-                    ))
-                ) 
-                : 
-                (
-                    <div>
-                        <h2>No Posts Available</h2>
-                    </div>
-                )
-            }
+                    )
+                }
+            </section>
         </div>
     );
 }

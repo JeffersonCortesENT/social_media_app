@@ -6,7 +6,7 @@ const RoutesContainer = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate to="/home/test" replace={true} />} />
+                <Route path="/" element={<Navigate to="/feed" replace={true} />} />
                 <Route path="/feed" element={<NewsFeed />} />
             </Routes>
         </>

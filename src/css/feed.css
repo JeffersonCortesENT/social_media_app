@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+.feed-line {
+    border: 5px solid;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.feed-header {
+    font-size: 35px;
+}
+
+.wrapper {
+    background: #fff;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 25px 25px 15px 25px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.input-box {
+    padding-top: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.input-box .post-form {
+    position: relative;
+    min-height: 130px;
+    max-height: 170px;
+    overflow-y: auto;
+}
+
+textarea {
+    width: 95%;
+    height: 100px;
+    padding: 10px;
+}
+
+.post-actions {
+    text-align: right;
+}
+
+.save-post {
+    background-color: #2b72e3;
+    color: #fff;
+    width: 60px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+
