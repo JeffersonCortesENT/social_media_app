@@ -28,7 +28,13 @@ const PostForm = () => {
                             <textarea name="post_text" placeholder='Share what you think!' value={oPostForm.post_text} onChange={handleFormChange}></textarea>
                         </div>
                     </div>
-                    <div className="post-actions">
+                    <div className="post-actions" defaultValue={'news'}>
+                        <select className="flair-selection" name="flair" onChange={handleFormChange} value={oPostForm.flair}>
+                            <option value="news">News</option>
+                            <option value="sports">Sports</option>
+                            <option value="food">Food</option>
+                            <option value="movies">Movies</option>
+                        </select>
                         <button className='save-post' onClick={savePost}>Post</button>
                     </div>
                 </div>

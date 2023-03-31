@@ -3,16 +3,10 @@ import { DEFAULT_FORM_POST } from '../constants';
 
 const initialState = {
     aPosts: [],
+    aFilteredPosts: [],
     oPost: DEFAULT_FORM_POST,
+    sFlairFilter: 'all',
 };
-
-// export const getApplicantsList = createAsyncThunk(
-//     'influencer/getApplicantsList',
-//     async (oParams, { dispatch }) => {
-//         const oResponse = await getApplicants(oParams);
-//         return oResponse.data
-//     }
-// );
 
 export const postSlice = createSlice({
     name: 'influencer',
@@ -35,16 +29,20 @@ export const postSlice = createSlice({
         savePostModifications: (state, action) => {
             const { index, data } = action.payload;
             state.aPosts[index] = data;
+        },
+        modifyFeedFilter: (state, action) => {
+            const { flair } = action.payload;
+            let aPostsTemp = state.aPosts;
+            state.sFlairFilter = flair !== null ? flair : state.sFlairFilter;
+            if (state.sFlairFilter !== 'all') {
+                state.aFilteredPosts = [...aPostsTemp].filter((oPost) => {
+                    return oPost.flair === state.sFlairFilter;
+                });
+            } else {
+                state.aFilteredPosts = [...aPostsTemp];
+            }
         }
     },
-    extraReducers: (builder) => {
-        // builder
-        //     .addCase(getInfluencerList.fulfilled, (state, action) => {
-        //         state.aInfluencers = action.payload.data.influencers;
-        //         state.aSelectedInfluencers = [];
-        //         state.iInfluencerListRequestFailCount = 0;
-        //     })
-    }
 });
 
 export const {
@@ -52,9 +50,11 @@ export const {
     savePostForm,
     deletePostEntry,
     savePostModifications,
+    modifyFeedFilter,
 } = postSlice.actions;
 
 export const selectPostsList = (state) => state.posts.aPosts;
 export const selectPostForm = (state) => state.posts.oPost;
+export const selectFilteredPost = (state) => state.posts.aFilteredPosts;
 
 export default postSlice.reducer;
