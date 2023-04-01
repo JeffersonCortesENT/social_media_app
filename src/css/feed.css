@@ -76,6 +76,16 @@ textarea {
     border-radius: 8px;
 }
 
+.order {
+    margin-left: 5px;
+    background-color: #fff;
+    color: #2b72e3;
+    font-weight: bold;
+    width: 45px;
+    height: 30px;
+    border-radius: 8px;
+}
+
 .edit-post {
     margin-left: 5px;
     background-color: #2b72e3;

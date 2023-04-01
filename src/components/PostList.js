@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePostEntry, modifyFeedFilter, selectFilteredPost, selectPostsList } from '../features/postSlice';
+import { deletePostEntry, modifyFeedFilter, selectDescStatus, selectFilteredPost, selectPostsList } from '../features/postSlice';
 import EditPostForm from './EditPostForm';
 
 
@@ -10,14 +10,14 @@ const PostList= () => {
     const aFilteredPosts = useSelector(selectFilteredPost);
     const [bShowEditForm, setShowEditForm] = useState(false);
     const [oEditData, setEditData] = useState(null);
+    const bDesc = useSelector(selectDescStatus);
 
-    const deletePost = (oEvent) => {
-        const { value } = oEvent.target;
-        dispatch(deletePostEntry({ value: value}));
+    const deletePost = (aData) => {
+        dispatch(deletePostEntry({ value: aData}));
     }
 
-    const openEditForm = (iIndex, oPostData) => {
-        setEditData({index: iIndex, oPost: oPostData});
+    const openEditForm = (oPostData) => {
+        setEditData({oPost: oPostData});
         setShowEditForm(true);
     }
 
@@ -27,7 +27,7 @@ const PostList= () => {
 
     useEffect(() => {
         dispatch(modifyFeedFilter({ flair: null}));
-    }, [aPosts])
+    }, [aPosts, bDesc])
 
     return (
         <div>
@@ -39,8 +39,8 @@ const PostList= () => {
                             <div className='post-content' key={iKey}>
                                 <p>{ aData.post_text }</p><br/>
 
-                                <button onClick={ () => { openEditForm(iKey, aData)} } className='edit-post btn'>Edit</button>
-                                <button value={iKey} onClick={deletePost} className='delete-post btn'>Delete</button>
+                                <button onClick={ () => { openEditForm(aData)} } className='edit-post btn'>Edit</button>
+                                <button value={iKey} onClick={ () => { deletePost(aData) } } className='delete-post btn'>Delete</button>
                             </div>
                         ))
                     ) 

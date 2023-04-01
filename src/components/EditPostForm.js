@@ -8,7 +8,7 @@ const EditPostForm = ({ closeForm, oEditData }) => {
     const [oForm, setForm] = useState({});
 
     const saveModifications = () => {
-        dispatch(savePostModifications({ index: oEditData.index, data: oForm }));
+        dispatch(savePostModifications({ data: oForm, prev_data: oEditData.oPost }));
         closeForm();
     }
 

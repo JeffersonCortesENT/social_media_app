@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handlePostFormChange, selectPostForm, savePostForm } from '../features/postSlice';
+import { STRING_CHECKER } from '../constants';
 
 
 const PostForm = () => {
@@ -13,7 +14,8 @@ const PostForm = () => {
     }
 
     const savePost = () => {
-        if (oPostForm.post_text !== '') {
+        let sRegex = new RegExp(STRING_CHECKER);
+        if (sRegex.test(oPostForm.post_text) === true) {
             dispatch(savePostForm());
         }
         dispatch(handlePostFormChange({ value: '', name: 'post_text'}));

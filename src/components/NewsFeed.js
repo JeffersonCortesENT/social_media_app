@@ -1,15 +1,20 @@
 import React from 'react';
 import PostForm from './PostForm';
 import PostList from './PostList';
-import { useDispatch } from 'react-redux';
-import { modifyFeedFilter } from '../features/postSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { modifyFeedFilter, selectDescStatus, setOrderBy } from '../features/postSlice';
 
 const NewsFeed = () => {
     const dispatch = useDispatch();
+    const bDesc = useSelector(selectDescStatus);
 
     const applyFilter = (oEvent) => {
         const { value } = oEvent.target;
         dispatch(modifyFeedFilter({ flair: value }));
+    }
+
+    const setOrder = () => {
+        dispatch(setOrderBy({ value: bDesc === true}));
     }
 
 
@@ -24,6 +29,7 @@ const NewsFeed = () => {
                     <option value="food">Food</option>
                     <option value="movies">Movies</option>
                 </select>
+                <button onClick={setOrder} className='order'>{bDesc === true ? 'Asc' : 'Desc'}</button>
             </section>
             <PostForm/>
             <PostList/>
